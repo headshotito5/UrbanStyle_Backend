@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'inicio',
     'django_mongodb_backend',
+    'rest_framework',
+
 ]
 
 MIDDLEWARE = [
