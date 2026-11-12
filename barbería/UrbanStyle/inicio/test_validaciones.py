@@ -50,7 +50,7 @@ class TestValidaciones(unittest.TestCase):
             validar_duracion_reserva(time(10), time(10, 30), 30)
         )
 #final testeo de validaciones.py
-#iran más pruebas?? no sé, pero dejare declarado que esta vaina es solo para validaciones si se agrega otro componente hay que testearlo igual
-#source: yutú
+
+#-----testeo seriallizers.py
 if __name__ == "__main__":
     unittest.main()
