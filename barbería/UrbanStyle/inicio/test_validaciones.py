@@ -2,6 +2,12 @@
 #----validaciones.py
 import unittest
 from datetime import date, time, timedelta
+from django.conf import settings
+
+if not settings.configured:
+    settings.configure(USE_I18N=False)
+
+from inicio.serializers import ReservaSerializer
 
 from inicio.validaciones import (
     validar_fecha_reserva,
@@ -52,5 +58,50 @@ class TestValidaciones(unittest.TestCase):
 #final testeo de validaciones.py
 
 #-----testeo seriallizers.py
+class TestReservaSerializer(unittest.TestCase):
+    def test_reserva_correcta(self):
+        datos = {
+            "fecha_reserva":(date.today() + timedelta(days=1)).isoformat(),
+            "hora_inicio": "8:00",
+            "hora_fin": "9:00",
+        }
+        reserva = ReservaSerializer(data=datos)
+        self.assertTrue(reserva.is_valid())
+    def test_fecha_incorrecta(self):
+        datos={
+            "fecha_reserva":(date.today()-timedelta(days=1)).isoformat(),
+            "hora_inicio": "8:00",
+            "hora_fin": "9:00"
+        }
+        reserva = ReservaSerializer(data=datos)
+        self.assertFalse(reserva.is_valid())
+
+    def test_horario_incorrecto(self):
+        datos={
+            "fecha_reserva":(date.today()+timedelta(days=1)).isoformat(),
+            "hora_inicio": "14:00",
+            "hora_fin": "13:00"
+        }
+        reserva = ReservaSerializer(data=datos)
+        self.assertFalse(reserva.is_valid())
+    def test_duracion_incorrecta(self):
+        datos = {
+            "fecha_reserva": (date.today() + timedelta(days=1)).isoformat(),
+            "hora_inicio": "11:00",
+            "hora_fin": "11:30"
+        }
+        reserva = ReservaSerializer(data=datos)
+        self.assertFalse(reserva.is_valid())
+    def test_formato_fecha_incorrecto(self):
+        datos = {
+            "fecha_reserva": "hola",
+            "hora_inicio": "10:00",
+            "hora_fin": "11:00"
+        }
+        reserva = ReservaSerializer(data=datos)
+        self.assertFalse(reserva.is_valid())
+
+
 if __name__ == "__main__":
     unittest.main()
+
