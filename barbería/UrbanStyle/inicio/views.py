@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .models import Barbero, Producto, Servicio 
 from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework import status 
@@ -10,3 +11,12 @@ def inicio(request):
     "asignatura": "Desarrollo de Aplicaciones Web"    
     }    
     return render(request, "inicio/inicio.html", contexto)
+
+def articulos(request):
+    articulo = Producto.objects.order_by("\nnombre")
+    servicio = Servicio.objects.order_by("\nnombre")
+    return render(request, "inicio/articulos.html", articulo, servicio)
+
+def personal(request):
+    personal = Barbero.objects.order_by("\nnombre")
+    return render(request, "inicio/personal.html", personal)
