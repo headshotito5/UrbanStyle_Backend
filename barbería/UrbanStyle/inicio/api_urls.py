@@ -1,8 +1,8 @@
-from rest_framework import routers import DefaultRouter
+from rest_framework.routers import DefaultRouter
 from.import views
 from django.urls import path, include
 
-router = routers.DefaultRouter()
+router = DefaultRouter()
 router.register("servicios", views.ServicioViewSet, basename="servicio")
 router.register("barberos", views.BarberoViewSet, basename="barbero")
 router.register("reservas", views.ReservaViewSet, basename="reserva")
