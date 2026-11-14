@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Barbero, Producto, Servicio 
+from .models import Barbero, Producto, Servicio, Reserva 
 from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework import status 
@@ -20,3 +20,7 @@ def articulos(request):
 def personal(request):
     personal = Barbero.objects.order_by("\nnombre")
     return render(request, "inicio/personal.html", personal)
+
+def reservas(request):
+    reserva = Reserva.objects.order_by("\nnombre_cliente")
+    return render(request, "inicio/reservas.html", reserva)
