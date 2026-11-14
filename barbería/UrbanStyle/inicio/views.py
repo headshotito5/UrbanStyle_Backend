@@ -1,3 +1,4 @@
+from.serializers_mongo import BarberoSerializer, ProductoSerializer, ServicioSerializer, ReservaMongoSerializer 
 from django.shortcuts import render
 from .models import Barbero, Producto, Servicio, Reserva 
 from rest_framework import viewsets
@@ -24,3 +25,19 @@ def personal(request):
 def reservas(request):
     reserva = Reserva.objects.order_by("\nnombre_cliente")
     return render(request, "inicio/reservas.html", reserva)
+
+class ServicioViewSet(viewsets.ModelViewSet):
+    queryset = Servicio.objects.all()
+    serializer_class = ServicioSerializer
+
+class BarberoViewSet(viewsets.ModelViewSet):
+    queryset = Barbero.objects.all()
+    serializer_class = BarberoSerializer
+
+class ReservaViewSet(viewsets.ModelViewSet):
+    queryset = Reserva.objects.all()
+    serializer_class = ReservaMongoSerializer
+
+class ProductoViewSet(viewsets.ModelViewSet):
+    queryset = Producto.objects.all()
+    serializer_class = ProductoSerializer

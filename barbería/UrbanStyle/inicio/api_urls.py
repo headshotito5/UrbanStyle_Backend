@@ -1,4 +1,5 @@
-from django.urls import path
+from rest_framework import routers import DefaultRouter
+from.import views
 
-urlpatterns = [
-]
+router = DefaultRouter()
+urlpaterns= router.urls
