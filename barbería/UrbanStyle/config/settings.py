@@ -79,8 +79,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django_mongodb_backend',
-        'HOST': 'localhost',
-        'PORT': 27017,
+        'HOST': 'mongodb+srv://danielaponce660_db_user:gjqq6VpAHKWwnxjf@proyectourbanstyle.rloq4pm.mongodb.net/',
         'NAME': 'urbanstyle_db',
     }
 }
