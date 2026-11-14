@@ -8,7 +8,7 @@ from rest_framework import status
 def inicio(request): 
     contexto = {
     "titulo": "Barbería Urban Style",        
-    "mensaje": "Bienvenidos al desarrollo Backend",        
+    "mensaje": "Bienvenidos al Backend de Urban Style",        
     "asignatura": "Desarrollo de Aplicaciones Web"    
     }    
     return render(request, "inicio/inicio.html", contexto)
