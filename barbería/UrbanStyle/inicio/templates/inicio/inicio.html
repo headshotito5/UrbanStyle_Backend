@@ -4,19 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title strong>{{ titulo }}</title strong>
+    <title>{{ titulo }}</title>
 </head>
 <body>
-    
+    <h1>{{ titulo }}</h1>
     <p>{{ mensaje }}</p>
     <p>{{ asignatura }}</p>
     <h2>Productos disponibles</h2>
-    <ul>
-        {% for articulo in articulos %}
-            <li>
-                <p>{{producto.nombre}}</p> 
-            </li>
-    </ul>
 
 </body>
 </html>
