@@ -18,9 +18,9 @@
         <p>Tu barbería de confianza</p>
         <nav>
             <a href="{% url 'inicio' %}">Inicio</a>
-            <a href="{% url 'servicios' %}">Servicios</a>
-            <a href="{% url 'barberos' %}">Barberos</a>
+            <a href="{% url 'personal' %}">Barberos</a>
             <a href="{% url 'articulos' %}">Productos</a>
+            <a href="{% url 'servicios' %}">Servicios</a>          
             <a href="{% url 'reservas' %}">Reservas</a>
             <a href="/api/">API REST</a>
         </nav>
@@ -29,11 +29,12 @@
     <main>
         <h2>Bienvenido a Urban Style</h2>
         <ul>
+
             <li>
-                <a href="{% url 'servicios' %}">Consultar servicios disponibles</a>
+                <a href="{% url 'personal' %}">Consultar barberos disponibles</a>
             </li>
             <li>
-                <a href="{% url 'barberos' %}">Consultar barberos disponibles</a>
+                <a href="{% url 'servicios' %}">Consultar servicios disponibles</a>
             </li>
             <li>
                 <a href="{% url 'articulos' %}">Consultar productos disponibles</a>
@@ -44,7 +45,7 @@
         </ul>
     </main>
     <footer>
-        <p>Urban Style - Sistema de gestión de barbería</p>
+        <p>Urban Style - Sistema de gestión</p>
     </footer>
 </body>
 </html>
