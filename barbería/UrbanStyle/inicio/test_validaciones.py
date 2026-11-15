@@ -1,18 +1,21 @@
 #primer prueba automatizada
 #----validaciones.py
+import os
 import unittest
-from datetime import date, time, timedelta
-from django.conf import settings
+import django
 
-if not settings.configured:
-    settings.configure(USE_I18N=False)
+from datetime import date, time, timedelta
+
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings")
+django.setup()
 
 from inicio.serializers import ReservaSerializer
+from inicio.serializers_mongo import ProductoSerializer, ServicioSerializer
 
 from inicio.validaciones import (
     validar_fecha_reserva,
     validar_horario_reserva,
-    validar_duracion_reserva,
+    validar_duracion_reserva
 )
 class TestValidaciones(unittest.TestCase):
     def test_fecha_pasada(self):
@@ -101,6 +104,59 @@ class TestReservaSerializer(unittest.TestCase):
         reserva = ReservaSerializer(data=datos)
         self.assertFalse(reserva.is_valid())
 
+class TestMongoSerializers(unittest.TestCase):
+    def test_producto_correcto(self):
+        datos = {
+            "nombre": "Cera",
+            "precio": 5000,
+            "stock": 10
+        }
+        producto = ProductoSerializer(data=datos)
+        self.assertTrue(producto.is_valid())
+    def test_producto_precio_incorrecto(self):
+        datos = {
+            "nombre": "Cera",
+            "precio": -5000,
+            "stock": 10
+        }
+        producto = ProductoSerializer(data=datos)
+        self.assertFalse(producto.is_valid())
+        self.assertIn("precio", producto.errors)
+    def test_producto_stock_incorrecto(self):
+        datos = {
+            "nombre": "Cera",
+            "precio": 5000,
+            "stock": -10
+        }
+        producto = ProductoSerializer(data=datos)
+        self.assertFalse(producto.is_valid())
+        self.assertIn("stock", producto.errors)
+    def test_servicio_correcto(self):
+        datos = {
+            "servicio": "Corte de cabello",
+            "precio": 5000,
+            "duracion": 60
+        }
+        servicio = ServicioSerializer(data=datos)
+        self.assertTrue(servicio.is_valid())
+    def test_servicio_precio_incorrecto(self):
+        datos = {
+            "servicio": "Corte de cabello",
+            "precio": -5000,
+            "duracion": 60
+        }
+        servicio = ServicioSerializer(data=datos)
+        self.assertFalse(servicio.is_valid())
+        self.assertIn("precio", servicio.errors)
+    def test_servicio_duracion_incorrecta(self):
+        datos = {
+            "servicio": "Corte de cabello",
+            "precio": 5000,
+            "duracion": 0
+        }
+        servicio = ServicioSerializer(data=datos)
+        self.assertFalse(servicio.is_valid())
+        self.assertIn("duracion", servicio.errors)
 
 if __name__ == "__main__":
     unittest.main()
