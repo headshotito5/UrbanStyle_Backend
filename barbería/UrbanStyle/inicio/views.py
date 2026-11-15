@@ -12,21 +12,22 @@ def inicio(request):
     "asignatura": "Desarrollo de Aplicaciones Web"    
     }    
     return render(request, "inicio/inicio.html", contexto)
+#sugerencia, si en tal caso que quieran mostrar productos y servicios en la pagina de inicio cambiar "def inicio" e importar desde models las definiciones
 
 def articulos(request):
-    articulo = Producto.objects.order_by("\nnombre")
-    return render(request, "inicio/articulos.html", {"articulo":articulo})
+    articulo = Producto.objects.order_by("nombre")
+    return render(request, "inicio/articulos.html", {"articulo": articulo})
 
 def servicios(request):
-    servicio = Servicio.objects.order_by("\nnombre")
+    servicio = Servicio.objects.order_by("servicio")
     return render(request, "inicio/articulos.html", {"servicio":servicio})
 
 def personal(request):
-    barberos = Barbero.objects.order_by("\nnombre")
+    barberos = Barbero.objects.order_by("nombre")
     return render(request, "inicio/personal.html", {"barberos":barberos})
 
 def reservas(request):
-    reserva = Reserva.objects.order_by("\nnombre_cliente")
+    reserva = Reserva.objects.order_by("nombre_cliente")
     return render(request, "inicio/reservas.html", {"reserva":reserva})
 
 class ServicioViewSet(viewsets.ModelViewSet):
