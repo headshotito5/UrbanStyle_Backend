@@ -6,22 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ titulo }}</title>
     {% load static %}
-    <link rel="stylesheet" href="{% static 'static/style.css'}">
+    <link rel="stylesheet" href="{% static 'static\style.css'}">
 </head>
 <body>
     <h1>{{ titulo }}</h1>
     <p>{{ mensaje }}</p>
     <p>{{ asignatura }}</p>
     <h2>Productos disponibles</h2>
-    <ul>
-      {% for articulo in producto %}
-            <li>
-               <strong>{{ producto.nombre }}</strong> (Precio: ${{ producto.precio }})
-            </li>
-      {% empty %}
-            <li>No hay artículos disponibles</li>
-      {% endfor %}
-   </ul>
+    <p>{{ personal }}</p>
+
 </body>
 </html>
 
