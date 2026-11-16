@@ -6,10 +6,10 @@
 </head>
 <body>
     <h1>Reservas disponibles</h1>
-    {% for reserva in reserva %}
+    {% for reservas in reserva %}
         <div>
-            <h3>{{ reserva.nombre_cliente }}</h3>
-            <p>Servicio: {{ reserva.servicio }}</p>
+            <h3>{{ reservas.nombre_cliente }}</h3>
+            <p>Servicio: {{ reservas.servicio }}</p>
             <hr>
         </div>
         <p>No hay reservas disponibles.</p>
