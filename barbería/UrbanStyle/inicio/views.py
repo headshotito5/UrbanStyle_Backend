@@ -15,16 +15,20 @@ def inicio(request):
 
 def articulos(request):
     articulo = Producto.objects.order_by("nombre")
-    servicio = Servicio.objects.order_by("nombre")
-    return render(request, "inicio/articulos.html", articulo, servicio)
+    return render(request, "inicio/articulos.html", {"articulo": articulo})
+
+
+def servicios(request):
+    servicio = Servicio.objects.order_by("servicio")
+    return render(request, "inicio/servicios.html", {"servicio":servicio})
 
 def personal(request):
-    personal = Barbero.objects.order_by("nombre")
-    return render(request, "inicio/personal.html", personal)
+    barberos = Barbero.objects.order_by("nombre")
+    return render(request, "inicio/personal.html", {"barberos":barberos})
 
 def reservas(request):
     reserva = Reserva.objects.order_by("nombre_cliente")
-    return render(request, "inicio/reservas.html", reserva)
+    return render(request, "inicio/reservas.html", {"reserva":reserva})
 
 class ServicioViewSet(viewsets.ModelViewSet):
     queryset = Servicio.objects.all()
