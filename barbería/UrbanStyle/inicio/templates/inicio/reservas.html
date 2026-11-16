@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Reservas UrbanStyle</title>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style2.css' %}">
 </head>
 <body>
     <h1>Reservas disponibles</h1>
@@ -12,6 +15,7 @@
             <p>Servicio: {{ reservas.servicio }}</p>
             <hr>
         </div>
+    {% empty %}
         <p>No hay reservas disponibles.</p>
     {% endfor %}
 </body>

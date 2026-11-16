@@ -3,15 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <title>Barberos UrbanStyle</title>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style2.css' %}">
 </head>
 <body>
-    <h1>Barberos disponibles</h1>
+    <h1>Nuestro staff</h1>
     {% for barbero in barberos %}
         <div>
-            <h3>{{ barbero.nombre }}</h3>
-            <p>Especialidad: {{ barbero.especialidad }}</p>
+            <h3>{{ barbero.nombre }} {{ barbero.apellido }}</h3>
             <hr>
         </div>
+    {% empty %}
         <p>No hay barberos disponibles.</p>
     {% endfor %}
 </body>
