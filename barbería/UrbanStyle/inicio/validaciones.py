@@ -12,7 +12,7 @@ def validar_horario_reserva(hora_inicio, hora_fin):
         return False
     return True
 #para la duracion, hora no < hora de reserva
-def validar_duracion_reserva(hora_inicio, hora_fin, duracion_minima=60):
+def validar_duracion_reserva(hora_inicio, hora_fin, duracion_minima=20):
     if hora_inicio >= hora_fin:
         return False
     inicio = datetime.combine(date.today(), hora_inicio)

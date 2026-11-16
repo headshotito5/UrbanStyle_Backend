@@ -51,7 +51,7 @@ class TestValidaciones(unittest.TestCase):
 
     def test_duracion_insuficiente(self):
         self.assertFalse(
-            validar_duracion_reserva(time(10), time(10, 30))
+            validar_duracion_reserva(time(10), time(10, 10))
         )
 
     def test_duracion_personalizada(self):
@@ -91,7 +91,7 @@ class TestReservaSerializer(unittest.TestCase):
         datos = {
             "fecha_reserva": (date.today() + timedelta(days=1)).isoformat(),
             "hora_inicio": "11:00",
-            "hora_fin": "11:30"
+            "hora_fin": "11:10"
         }
         reserva = ReservaSerializer(data=datos)
         self.assertFalse(reserva.is_valid())
