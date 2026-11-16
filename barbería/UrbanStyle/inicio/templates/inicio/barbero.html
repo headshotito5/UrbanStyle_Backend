@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Barberos UrbanStyle</title>
+</head>
+<body>
+    <h1>Barberos disponibles</h1>
+    {% for barbero in personal %}
+        <div>
+            <h3>{{ barbero.nombre }}</h3>
+            <p>Especialidad: {{ barbero.especialidad }}</p>
+            <hr>
+        </div>
+        <p>No hay barberos disponibles.</p>
+    {% endfor %}
+</body>
+</html>
